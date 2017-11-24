@@ -1,19 +1,18 @@
-let express = require('express');
-let compression = require('compression');
+const express = require('express');
+const compression = require('compression');
 
-let config = {
-    port: 8080
+const config = {
+  port: 8080,
 };
 
-let app = express();
+const app = express();
 
 app.use(compression());
 
-app.use('/static', express.static(__dirname + '/public/static'));
+app.use('/static', express.static(`${__dirname  }/public/static`));
 
 app.get('/', (req, res) => {
-    res.type('html').send(
-        `
+  res.type('html').send(`
         <html>
             <head>
 
@@ -24,10 +23,10 @@ app.get('/', (req, res) => {
                 <script src="/static/main.js"></script>
             </body>
         </html>
-        `
-    );
+        `,
+  );
 });
 
 app.listen(config.port, () => {
-    console.log(`listen on http://localhost:${config.port}`);
+  console.log(`listen on http://localhost:${config.port}`);
 });

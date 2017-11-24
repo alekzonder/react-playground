@@ -303,6 +303,20 @@ module.exports = emptyFunction;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(15);
+} else {
+  module.exports = __webpack_require__(16);
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /*
 object-assign
 (c) Sindre Sorhus
@@ -395,7 +409,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 };
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -416,20 +430,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = emptyObject;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(15);
-} else {
-  module.exports = __webpack_require__(16);
-}
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -945,9 +945,7 @@ module.exports = focusNode;
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(4);
+var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -955,141 +953,49 @@ var _reactDom = __webpack_require__(18);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _Clock = __webpack_require__(27);
+
+var _Clock2 = _interopRequireDefault(_Clock);
+
+var _Toggle = __webpack_require__(28);
+
+var _Toggle2 = _interopRequireDefault(_Toggle);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Welcome = function (_React$Component) {
-  _inherits(Welcome, _React$Component);
-
-  function Welcome() {
-    _classCallCheck(this, Welcome);
-
-    return _possibleConstructorReturn(this, (Welcome.__proto__ || Object.getPrototypeOf(Welcome)).apply(this, arguments));
-  }
-
-  _createClass(Welcome, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'h1',
-        null,
-        'Hello, ',
-        this.props.name
-      );
-    }
-  }]);
-
-  return Welcome;
-}(_react2.default.Component);
-
-function FormattedDate(props) {
+function Welcome(props) {
   return _react2.default.createElement(
-    'span',
+    'h1',
     null,
-    props.date.toLocaleTimeString()
+    'Hello, ',
+    props.name
   );
 }
 
-var Clock = function (_React$Component2) {
-  _inherits(Clock, _React$Component2);
-
-  function Clock(props) {
-    _classCallCheck(this, Clock);
-
-    var _this2 = _possibleConstructorReturn(this, (Clock.__proto__ || Object.getPrototypeOf(Clock)).call(this, props));
-
-    _this2.state = {
-      date: new Date()
-    };
-    return _this2;
-  }
-
-  _createClass(Clock, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this3 = this;
-
-      this.interval = setInterval(function () {
-        _this3.tick();
-      }, 1000);
-    }
-  }, {
-    key: 'componentWillUnMount',
-    value: function componentWillUnMount() {
-      clearInterval(this.interval);
-    }
-  }, {
-    key: 'tick',
-    value: function tick() {
-      this.setState({
-        date: new Date()
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'h2',
-        null,
-        'Clock: ',
-        _react2.default.createElement(FormattedDate, { date: this.state.date })
-      );
-    }
-  }]);
-
-  return Clock;
-}(_react2.default.Component);
-
-var Toggle = function (_React$Component3) {
-  _inherits(Toggle, _React$Component3);
-
-  function Toggle(props) {
-    _classCallCheck(this, Toggle);
-
-    var _this4 = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
-
-    _this4.handleClick = function () {
-      console.log(_this4);
-      _this4.setState(function (prevState) {
-        return {
-          isToggleOn: !prevState.isToggleOn
-        };
-      });
-    };
-
-    _this4.state = { isToggleOn: true };
-
-    // This binding is necessary to make `this` work in the callback
-    // this.handleClick = this.handleClick.bind(this);
-    return _this4;
-  }
-
-  _createClass(Toggle, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'button',
-        { onClick: this.handleClick },
-        this.state.isToggleOn ? 'ON' : 'OFF'
-      );
-    }
-  }]);
-
-  return Toggle;
-}(_react2.default.Component);
+Welcome.propTypes = {
+  name: _react2.default.PropTypes.string.isRequired
+};
 
 function App() {
+  var numbers = [1, 2, 3, 4].map(function (number) {
+    return _react2.default.createElement(
+      'li',
+      { key: number.toString() },
+      number
+    );
+  });
+
   return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement(Welcome, { name: 'A' }),
-    _react2.default.createElement(Clock, null),
-    _react2.default.createElement(Toggle, null)
+    _react2.default.createElement(_Clock2.default, null),
+    _react2.default.createElement(_Toggle2.default, null),
+    _react2.default.createElement(
+      'ul',
+      null,
+      numbers
+    )
   );
 }
 
@@ -1112,8 +1018,8 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var m = __webpack_require__(2),
-    n = __webpack_require__(3),
+var m = __webpack_require__(3),
+    n = __webpack_require__(4),
     p = __webpack_require__(1);
 function q(a) {
   for (var b = arguments.length - 1, e = "Minified React error #" + a + "; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d" + a, d = 0; d < b; d++) {
@@ -1240,9 +1146,9 @@ if (process.env.NODE_ENV !== "production") {
   (function () {
     'use strict';
 
-    var _assign = __webpack_require__(2);
+    var _assign = __webpack_require__(3);
     var invariant = __webpack_require__(5);
-    var emptyObject = __webpack_require__(3);
+    var emptyObject = __webpack_require__(4);
     var warning = __webpack_require__(6);
     var emptyFunction = __webpack_require__(1);
     var checkPropTypes = __webpack_require__(7);
@@ -2645,16 +2551,16 @@ if (process.env.NODE_ENV === 'production') {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var aa = __webpack_require__(4),
+var aa = __webpack_require__(2),
     m = __webpack_require__(8),
-    A = __webpack_require__(2),
+    A = __webpack_require__(3),
     B = __webpack_require__(1),
     ca = __webpack_require__(9),
     da = __webpack_require__(10),
     ea = __webpack_require__(11),
     ha = __webpack_require__(12),
     ia = __webpack_require__(13),
-    C = __webpack_require__(3);
+    C = __webpack_require__(4);
 function D(a) {
   for (var b = arguments.length - 1, c = "Minified React error #" + a + "; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d" + a, d = 0; d < b; d++) {
     c += "\x26args[]\x3d" + encodeURIComponent(arguments[d + 1]);
@@ -4701,7 +4607,7 @@ module.exports = isNode;
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};if(process.env.NODE_ENV!=="production"){(function(){'use strict';var React=__webpack_require__(4);var invariant=__webpack_require__(5);var warning=__webpack_require__(6);var ExecutionEnvironment=__webpack_require__(8);var _assign=__webpack_require__(2);var emptyFunction$1=__webpack_require__(1);var EventListener=__webpack_require__(9);var getActiveElement=__webpack_require__(10);var shallowEqual=__webpack_require__(11);var containsNode=__webpack_require__(12);var focusNode=__webpack_require__(13);var emptyObject=__webpack_require__(3);var checkPropTypes=__webpack_require__(7);var hyphenateStyleName=__webpack_require__(23);var camelizeStyleName=__webpack_require__(25);/**
+ */var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};if(process.env.NODE_ENV!=="production"){(function(){'use strict';var React=__webpack_require__(2);var invariant=__webpack_require__(5);var warning=__webpack_require__(6);var ExecutionEnvironment=__webpack_require__(8);var _assign=__webpack_require__(3);var emptyFunction$1=__webpack_require__(1);var EventListener=__webpack_require__(9);var getActiveElement=__webpack_require__(10);var shallowEqual=__webpack_require__(11);var containsNode=__webpack_require__(12);var focusNode=__webpack_require__(13);var emptyObject=__webpack_require__(4);var checkPropTypes=__webpack_require__(7);var hyphenateStyleName=__webpack_require__(23);var camelizeStyleName=__webpack_require__(25);/**
  * WARNING: DO NOT manually require this module.
  * This is a replacement for `invariant(...)` used by the error code system
  * and will _only_ be required by the corresponding babel pass.
@@ -7841,6 +7747,165 @@ function camelize(string) {
 }
 
 module.exports = camelize;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function FormattedDate(props) {
+  return _react2.default.createElement(
+    'span',
+    null,
+    props.date.toLocaleTimeString()
+  );
+}
+
+var Clock = function (_React$Component) {
+  _inherits(Clock, _React$Component);
+
+  function Clock(props) {
+    _classCallCheck(this, Clock);
+
+    var _this = _possibleConstructorReturn(this, (Clock.__proto__ || Object.getPrototypeOf(Clock)).call(this, props));
+
+    _this.state = {
+      shown: true,
+      date: new Date()
+    };
+    return _this;
+  }
+
+  _createClass(Clock, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      console.log('componentDidMount');
+      this.interval = setInterval(function () {
+        _this2.tick();
+      }, 1000);
+    }
+  }, {
+    key: 'componentWillUnMount',
+    value: function componentWillUnMount() {
+      console.log('componentWillUnMount');
+      clearInterval(this.interval);
+    }
+  }, {
+    key: 'tick',
+    value: function tick() {
+      this.setState({
+        // shown: !this.state.shown,
+        date: new Date()
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      if (!this.state.shown) {
+        return null;
+      }
+
+      return _react2.default.createElement(
+        'h2',
+        null,
+        'Clock: ',
+        _react2.default.createElement(FormattedDate, { date: this.state.date })
+      );
+    }
+  }]);
+
+  return Clock;
+}(_react2.default.Component);
+
+Clock.PropTypes = {};
+exports.default = Clock;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Toggle = function (_React$Component) {
+  _inherits(Toggle, _React$Component);
+
+  function Toggle(props) {
+    _classCallCheck(this, Toggle);
+
+    var _this = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
+
+    _this.state = { isToggleOn: true };
+
+    // This binding is necessary to make `this` work in the callback
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(Toggle, [{
+    key: 'handleClick',
+    value: function handleClick() {
+      this.setState(function (prevState) {
+        return {
+          isToggleOn: !prevState.isToggleOn
+        };
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'button',
+        { onClick: this.handleClick },
+        this.state.isToggleOn ? 'ON' : 'OFF'
+      );
+    }
+  }]);
+
+  return Toggle;
+}(_react2.default.Component);
+
+exports.default = Toggle;
 
 /***/ })
 /******/ ]);
