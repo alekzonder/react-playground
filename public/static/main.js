@@ -987,13 +987,109 @@ var Welcome = function (_React$Component) {
   return Welcome;
 }(_react2.default.Component);
 
+function FormattedDate(props) {
+  return _react2.default.createElement(
+    'span',
+    null,
+    props.date.toLocaleTimeString()
+  );
+}
+
+var Clock = function (_React$Component2) {
+  _inherits(Clock, _React$Component2);
+
+  function Clock(props) {
+    _classCallCheck(this, Clock);
+
+    var _this2 = _possibleConstructorReturn(this, (Clock.__proto__ || Object.getPrototypeOf(Clock)).call(this, props));
+
+    _this2.state = {
+      date: new Date()
+    };
+    return _this2;
+  }
+
+  _createClass(Clock, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this3 = this;
+
+      this.interval = setInterval(function () {
+        _this3.tick();
+      }, 1000);
+    }
+  }, {
+    key: 'componentWillUnMount',
+    value: function componentWillUnMount() {
+      clearInterval(this.interval);
+    }
+  }, {
+    key: 'tick',
+    value: function tick() {
+      this.setState({
+        date: new Date()
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'h2',
+        null,
+        'Clock: ',
+        _react2.default.createElement(FormattedDate, { date: this.state.date })
+      );
+    }
+  }]);
+
+  return Clock;
+}(_react2.default.Component);
+
+var Toggle = function (_React$Component3) {
+  _inherits(Toggle, _React$Component3);
+
+  function Toggle(props) {
+    _classCallCheck(this, Toggle);
+
+    var _this4 = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
+
+    _this4.handleClick = function () {
+      console.log(_this4);
+      _this4.setState(function (prevState) {
+        return {
+          isToggleOn: !prevState.isToggleOn
+        };
+      });
+    };
+
+    _this4.state = { isToggleOn: true };
+
+    // This binding is necessary to make `this` work in the callback
+    // this.handleClick = this.handleClick.bind(this);
+    return _this4;
+  }
+
+  _createClass(Toggle, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'button',
+        { onClick: this.handleClick },
+        this.state.isToggleOn ? 'ON' : 'OFF'
+      );
+    }
+  }]);
+
+  return Toggle;
+}(_react2.default.Component);
+
 function App() {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(Welcome, { name: 'Sara' }),
-    _react2.default.createElement(Welcome, { name: 'Cahal' }),
-    _react2.default.createElement(Welcome, { name: 'Edite' })
+    _react2.default.createElement(Welcome, { name: 'A' }),
+    _react2.default.createElement(Clock, null),
+    _react2.default.createElement(Toggle, null)
   );
 }
 
