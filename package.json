@@ -9,7 +9,7 @@
     "_build": "babel src --out-dir package",
     "_dev": "npm run dev -- --watch",
     "build": "NODE_ENV=production webpack --optimize-minimize",
-    "dev": "webpack --watch",
+    "dev": "pm2 start ecosystem.dev.config.js",
     "start": "node .",
     "test": "JASMINE_CONFIG_PATH=./jasmine.json jasmine",
     "lint": "eslint ."
