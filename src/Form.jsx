@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Form extends React.Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    onChangeName: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {
-      name: 'test',
       text: '',
       selected: 'two',
       selectOptions: [
@@ -26,7 +31,7 @@ export default class Form extends React.Component {
   }
 
   onChangeName = (event) => {
-    this.setState({ name: event.target.value });
+    this.props.onChangeName(event.target.value);
   };
 
   onChangeText = (event) => {
@@ -39,17 +44,15 @@ export default class Form extends React.Component {
 
   changeName = (event) => {
     event.preventDefault();
-    this.setState({
-      name: 'alekzonder',
-    });
+    this.props.onChangeName('alekzonder');
   };
 
   render() {
     return (
       <form>
-        <h4>{this.state.name}</h4>
+        <h4>{this.props.name}</h4>
 
-        <input type="text" value={this.state.name.toUpperCase()} onChange={this.onChangeName} />
+        <input type="text" value={this.props.name.toUpperCase()} onChange={this.onChangeName} />
 
         <br />
 

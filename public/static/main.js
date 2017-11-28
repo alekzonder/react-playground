@@ -997,6 +997,8 @@ if (process.env.NODE_ENV !== 'production') {
 "use strict";
 
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
@@ -1005,50 +1007,80 @@ var _reactDom = __webpack_require__(19);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _propTypes = __webpack_require__(15);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _Clock = __webpack_require__(30);
-
-var _Clock2 = _interopRequireDefault(_Clock);
-
-var _Toggle = __webpack_require__(31);
-
-var _Toggle2 = _interopRequireDefault(_Toggle);
-
-var _List = __webpack_require__(32);
-
-var _List2 = _interopRequireDefault(_List);
-
 var _Form = __webpack_require__(36);
 
 var _Form2 = _interopRequireDefault(_Form);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Welcome(props) {
-  return _react2.default.createElement(
-    'h1',
-    null,
-    'Hello, ',
-    props.name
-  );
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Welcome.propTypes = {
-  name: _propTypes2.default.string.isRequired
-};
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function App() {
-  // const numbers = [1, 2, 3, 4].map(number => <li key={number.toString()}>{number}</li>);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import PropTypes from 'prop-types';
 
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(_Form2.default, null)
-  );
-}
+// import Clock from './Clock';
+// import Toggle from './Toggle';
+// import List from './List';
+
+
+// function Welcome(props) {
+//   return <h1>Hello, {props.name}</h1>;
+// }
+//
+// Welcome.propTypes = {
+//   name: PropTypes.string.isRequired,
+// };
+
+var App = function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  function App(props) {
+    _classCallCheck(this, App);
+
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.onChangeName = function (value) {
+      _this.setState({
+        name: value
+      });
+    };
+
+    _this.state = {
+      name: 'test'
+    };
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h4',
+          null,
+          'name is ',
+          this.state.name
+        ),
+        _react2.default.createElement(_Form2.default, { name: this.state.name, onChangeName: this.onChangeName })
+      );
+    }
+  }]);
+
+  return App;
+}(_react2.default.Component);
+
+// {/* <Welcome name="A" />
+// <Clock />
+// <Toggle />
+// <ul>{numbers}</ul>
+// <List /> */}
+// function App() {
+//   // const numbers = [1, 2, 3, 4].map(number => <li key={number.toString()}>{number}</li>);
+// }
 
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('root'));
 
@@ -8366,309 +8398,10 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(15);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function FormattedDate(props) {
-  return _react2.default.createElement(
-    'span',
-    null,
-    props.date.toLocaleTimeString()
-  );
-}
-FormattedDate.propTypes = {
-  date: _propTypes2.default.instanceOf(Date).isRequired
-};
-
-var Clock = function (_React$Component) {
-  _inherits(Clock, _React$Component);
-
-  function Clock(props) {
-    _classCallCheck(this, Clock);
-
-    var _this = _possibleConstructorReturn(this, (Clock.__proto__ || Object.getPrototypeOf(Clock)).call(this, props));
-
-    _this.state = {
-      shown: true,
-      date: new Date()
-    };
-    return _this;
-  }
-
-  _createClass(Clock, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      console.log('componentDidMount');
-      this.interval = setInterval(function () {
-        _this2.tick();
-      }, 1000);
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      console.log('componentWillUnMount');
-      clearInterval(this.interval);
-    }
-  }, {
-    key: 'tick',
-    value: function tick() {
-      this.setState({
-        // shown: !this.state.shown,
-        date: new Date()
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      if (!this.state.shown) {
-        return null;
-      }
-
-      return _react2.default.createElement(
-        'h2',
-        null,
-        'Clock: ',
-        _react2.default.createElement(FormattedDate, { date: this.state.date })
-      );
-    }
-  }]);
-
-  return Clock;
-}(_react2.default.Component);
-
-Clock.propTypes = {};
-exports.default = Clock;
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Toggle = function (_React$Component) {
-  _inherits(Toggle, _React$Component);
-
-  function Toggle(props) {
-    _classCallCheck(this, Toggle);
-
-    var _this = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
-
-    _this.state = { isToggleOn: true };
-
-    // This binding is necessary to make `this` work in the callback
-    _this.handleClick = _this.handleClick.bind(_this);
-    return _this;
-  }
-
-  _createClass(Toggle, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      this.setState(function (prevState) {
-        return {
-          isToggleOn: !prevState.isToggleOn
-        };
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'button',
-        { onClick: this.handleClick },
-        this.state.isToggleOn ? 'ON' : 'OFF'
-      );
-    }
-  }]);
-
-  return Toggle;
-}(_react2.default.Component);
-
-exports.default = Toggle;
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ListItem = __webpack_require__(33);
-
-var _ListItem2 = _interopRequireDefault(_ListItem);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var List = function (_React$Component) {
-  _inherits(List, _React$Component);
-
-  function List(props) {
-    _classCallCheck(this, List);
-
-    var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
-
-    _this.regenerate = function () {
-      _this.setState({
-        list: [{ id: 1, value: 100 }]
-      });
-    };
-
-    _this.state = {
-      list: []
-    };
-    return _this;
-  }
-
-  _createClass(List, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.generate();
-    }
-  }, {
-    key: 'generate',
-    value: function generate() {
-      var list = [];
-
-      for (var i = 0; i < 10; i += 1) {
-        list.push({
-          id: i,
-          value: i * 100
-        });
-      }
-      this.setState({ list: list });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var list = this.state.list;
-
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'button',
-          { onClick: this.regenerate },
-          'regenerate'
-        ),
-        _react2.default.createElement(
-          'ul',
-          null,
-          list.map(function (item) {
-            return _react2.default.createElement(_ListItem2.default, { key: item.id, item: item });
-          })
-        )
-      );
-    }
-  }]);
-
-  return List;
-}(_react2.default.Component);
-
-exports.default = List;
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(15);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function ListItem(props) {
-  return _react2.default.createElement(
-    'li',
-    null,
-    props.item.id,
-    ' = ',
-    props.item.value
-  );
-}
-
-ListItem.propTypes = {
-  item: _propTypes2.default.shape({
-    id: _propTypes2.default.number.isRequired,
-    value: _propTypes2.default.number.isRequired
-  }).isRequired
-};
-
-exports.default = ListItem;
-
-/***/ }),
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
 /* 34 */,
 /* 35 */,
 /* 36 */
@@ -8687,6 +8420,10 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(15);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -8704,7 +8441,7 @@ var Form = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
     _this.onChangeName = function (event) {
-      _this.setState({ name: event.target.value });
+      _this.props.onChangeName(event.target.value);
     };
 
     _this.onChangeText = function (event) {
@@ -8717,13 +8454,10 @@ var Form = function (_React$Component) {
 
     _this.changeName = function (event) {
       event.preventDefault();
-      _this.setState({
-        name: 'alekzonder'
-      });
+      _this.props.onChangeName('alekzonder');
     };
 
     _this.state = {
-      name: 'test',
       text: '',
       selected: 'two',
       selectOptions: [{
@@ -8749,9 +8483,9 @@ var Form = function (_React$Component) {
         _react2.default.createElement(
           'h4',
           null,
-          this.state.name
+          this.props.name
         ),
-        _react2.default.createElement('input', { type: 'text', value: this.state.name.toUpperCase(), onChange: this.onChangeName }),
+        _react2.default.createElement('input', { type: 'text', value: this.props.name.toUpperCase(), onChange: this.onChangeName }),
         _react2.default.createElement('br', null),
         _react2.default.createElement(
           'button',
@@ -8794,6 +8528,10 @@ var Form = function (_React$Component) {
   return Form;
 }(_react2.default.Component);
 
+Form.propTypes = {
+  name: _propTypes2.default.string.isRequired,
+  onChangeName: _propTypes2.default.func.isRequired
+};
 exports.default = Form;
 
 /***/ })
