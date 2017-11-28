@@ -9,7 +9,7 @@ const app = express();
 
 app.use(compression());
 
-app.use('/static', express.static(`${__dirname  }/public/static`));
+app.use('/static', express.static(`${__dirname}/public/static`));
 
 app.get('/', (req, res) => {
   res.type('html').send(`
@@ -23,8 +23,7 @@ app.get('/', (req, res) => {
                 <script src="/static/main.js"></script>
             </body>
         </html>
-        `,
-  );
+        `);
 });
 
 app.listen(config.port, () => {

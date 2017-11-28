@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 import Clock from './Clock';
 import Toggle from './Toggle';
@@ -9,7 +10,7 @@ function Welcome(props) {
 }
 
 Welcome.propTypes = {
-  name: React.PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 function App() {

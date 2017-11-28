@@ -5,10 +5,13 @@ function FormattedDate(props) {
   return <span>{props.date.toLocaleTimeString()}</span>;
 }
 FormattedDate.propTypes = {
-  date: PropTypes.string.isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
 };
 
 export default class Clock extends React.Component {
+  static propTypes = {
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -17,8 +20,6 @@ export default class Clock extends React.Component {
     };
   }
 
-  static propTypes = {};
-
   componentDidMount() {
     console.log('componentDidMount');
     this.interval = setInterval(() => {
@@ -26,7 +27,7 @@ export default class Clock extends React.Component {
     }, 1000);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     console.log('componentWillUnMount');
     clearInterval(this.interval);
   }
