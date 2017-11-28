@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Clock from './Clock';
 import Toggle from './Toggle';
+import List from './List';
 
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -22,11 +23,9 @@ function App() {
       <Clock />
       <Toggle />
       <ul>{numbers}</ul>
-    </div>);
+      <List />
+    </div>
+  );
 }
 
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root'),
-);
+ReactDOM.render(<App />, document.getElementById('root'));

@@ -1017,6 +1017,10 @@ var _Toggle = __webpack_require__(31);
 
 var _Toggle2 = _interopRequireDefault(_Toggle);
 
+var _List = __webpack_require__(32);
+
+var _List2 = _interopRequireDefault(_List);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Welcome(props) {
@@ -1051,7 +1055,8 @@ function App() {
       'ul',
       null,
       numbers
-    )
+    ),
+    _react2.default.createElement(_List2.default, null)
   );
 }
 
@@ -8535,6 +8540,143 @@ var Toggle = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Toggle;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ListItem = __webpack_require__(33);
+
+var _ListItem2 = _interopRequireDefault(_ListItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var List = function (_React$Component) {
+  _inherits(List, _React$Component);
+
+  function List(props) {
+    _classCallCheck(this, List);
+
+    var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
+
+    _this.regenerate = function () {
+      _this.setState({
+        list: [{ id: 1, value: 100 }]
+      });
+    };
+
+    _this.state = {
+      list: []
+    };
+    return _this;
+  }
+
+  _createClass(List, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.generate();
+    }
+  }, {
+    key: 'generate',
+    value: function generate() {
+      var list = [];
+
+      for (var i = 0; i < 10; i += 1) {
+        list.push({
+          id: i,
+          value: i * 100
+        });
+      }
+      this.setState({ list: list });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var list = this.state.list;
+
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'button',
+          { onClick: this.regenerate },
+          'regenerate'
+        ),
+        _react2.default.createElement(
+          'ul',
+          null,
+          list.map(function (item) {
+            return _react2.default.createElement(_ListItem2.default, { key: item.id, item: item });
+          })
+        )
+      );
+    }
+  }]);
+
+  return List;
+}(_react2.default.Component);
+
+exports.default = List;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(15);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ListItem(props) {
+  return _react2.default.createElement(
+    'li',
+    null,
+    props.item.id,
+    ' = ',
+    props.item.value
+  );
+}
+
+ListItem.propTypes = {
+  item: _propTypes2.default.shape({
+    id: _propTypes2.default.number.isRequired,
+    value: _propTypes2.default.number.isRequired
+  }).isRequired
+};
+
+exports.default = ListItem;
 
 /***/ })
 /******/ ]);
