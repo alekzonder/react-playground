@@ -1021,6 +1021,10 @@ var _List = __webpack_require__(32);
 
 var _List2 = _interopRequireDefault(_List);
 
+var _Form = __webpack_require__(36);
+
+var _Form2 = _interopRequireDefault(_Form);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Welcome(props) {
@@ -1037,26 +1041,12 @@ Welcome.propTypes = {
 };
 
 function App() {
-  var numbers = [1, 2, 3, 4].map(function (number) {
-    return _react2.default.createElement(
-      'li',
-      { key: number.toString() },
-      number
-    );
-  });
+  // const numbers = [1, 2, 3, 4].map(number => <li key={number.toString()}>{number}</li>);
 
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(Welcome, { name: 'A' }),
-    _react2.default.createElement(_Clock2.default, null),
-    _react2.default.createElement(_Toggle2.default, null),
-    _react2.default.createElement(
-      'ul',
-      null,
-      numbers
-    ),
-    _react2.default.createElement(_List2.default, null)
+    _react2.default.createElement(_Form2.default, null)
   );
 }
 
@@ -8677,6 +8667,134 @@ ListItem.propTypes = {
 };
 
 exports.default = ListItem;
+
+/***/ }),
+/* 34 */,
+/* 35 */,
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Form = function (_React$Component) {
+  _inherits(Form, _React$Component);
+
+  function Form(props) {
+    _classCallCheck(this, Form);
+
+    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
+
+    _this.onChangeName = function (event) {
+      _this.setState({ name: event.target.value });
+    };
+
+    _this.onChangeText = function (event) {
+      _this.setState({ text: event.target.value });
+    };
+
+    _this.onChangeSelected = function (event) {
+      _this.setState({ selected: event.target.value });
+    };
+
+    _this.changeName = function (event) {
+      event.preventDefault();
+      _this.setState({
+        name: 'alekzonder'
+      });
+    };
+
+    _this.state = {
+      name: 'test',
+      text: '',
+      selected: 'two',
+      selectOptions: [{
+        value: 'one',
+        title: 'one'
+      }, {
+        value: 'two',
+        title: 'two'
+      }, {
+        value: 'three',
+        title: 'three'
+      }]
+    };
+    return _this;
+  }
+
+  _createClass(Form, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'form',
+        null,
+        _react2.default.createElement(
+          'h4',
+          null,
+          this.state.name
+        ),
+        _react2.default.createElement('input', { type: 'text', value: this.state.name.toUpperCase(), onChange: this.onChangeName }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.changeName },
+          'change name'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('textarea', { value: this.state.text, onChange: this.onChangeText }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'code',
+          null,
+          _react2.default.createElement(
+            'pre',
+            null,
+            this.state.text
+          )
+        ),
+        _react2.default.createElement(
+          'h4',
+          null,
+          'selected = ',
+          this.state.selected
+        ),
+        _react2.default.createElement(
+          'select',
+          { value: this.state.selected, onChange: this.onChangeSelected },
+          this.state.selectOptions.map(function (option) {
+            return _react2.default.createElement(
+              'option',
+              { key: option.value, value: option.value },
+              option.title
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return Form;
+}(_react2.default.Component);
+
+exports.default = Form;
 
 /***/ })
 /******/ ]);

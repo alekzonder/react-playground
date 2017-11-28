@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Clock from './Clock';
 import Toggle from './Toggle';
 import List from './List';
+import Form from './Form';
 
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -15,15 +16,16 @@ Welcome.propTypes = {
 };
 
 function App() {
-  const numbers = [1, 2, 3, 4].map(number => <li key={number.toString()}>{number}</li>);
+  // const numbers = [1, 2, 3, 4].map(number => <li key={number.toString()}>{number}</li>);
 
   return (
     <div>
-      <Welcome name="A" />
+      {/* <Welcome name="A" />
       <Clock />
       <Toggle />
       <ul>{numbers}</ul>
-      <List />
+      <List /> */}
+      <Form />
     </div>
   );
 }
