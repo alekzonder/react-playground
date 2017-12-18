@@ -2,3 +2,4 @@ node_modules/
 package/
 .rempl_endpoint_id
 .npm-debug.log
+.idea

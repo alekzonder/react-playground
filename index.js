@@ -15,11 +15,13 @@ app.get('/', (req, res) => {
   res.type('html').send(`
         <html>
             <head>
+                <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+                <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+                <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
 
             </head>
             <body>
-                <div id="root"></div>
-                <div id="root1"></div>
+                <div style="margin-top: 10px;" class="container" id="root"></div>
                 <script src="/static/main.js"></script>
             </body>
         </html>
