@@ -2897,6 +2897,10 @@ jsx-ast-utils@^2.0.0:
   dependencies:
     array-includes "^3.0.3"
 
+keypress.js@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/keypress.js/-/keypress.js-2.1.4.tgz#571ea570aaecb54b633ec037547d6d51d52a7708"
+
 kind-of@^3.0.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 51);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -299,21 +299,25 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 2 */
+/* 2 */,
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(17);
+  module.exports = __webpack_require__(52);
 } else {
-  module.exports = __webpack_require__(18);
+  module.exports = __webpack_require__(53);
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 3 */
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -409,7 +413,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 };
 
 /***/ }),
-/* 4 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -469,7 +473,11 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 5 */
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -493,7 +501,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 6 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -562,7 +570,12 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 7 */
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -578,9 +591,9 @@ module.exports = warning;
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(4);
-  var warning = __webpack_require__(6);
-  var ReactPropTypesSecret = __webpack_require__(8);
+  var invariant = __webpack_require__(8);
+  var warning = __webpack_require__(14);
+  var ReactPropTypesSecret = __webpack_require__(21);
   var loggedTypeFailures = {};
 }
 
@@ -630,7 +643,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 8 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -648,7 +661,58 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 9 */
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+function checkDCE() {
+  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+  if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function') {
+    return;
+  }
+  if (process.env.NODE_ENV !== 'production') {
+    // This branch is unreachable because this function is only called
+    // in production, but the condition is true only in development.
+    // Therefore if the branch is still here, dead code elimination wasn't
+    // properly applied.
+    // Don't change the message. React DevTools relies on it. Also make sure
+    // this message doesn't occur elsewhere in this function, or it will cause
+    // a false positive.
+    throw new Error('^_^');
+  }
+  try {
+    // Verify that the code above has been dead code eliminated (DCE'd).
+    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
+  } catch (err) {
+    // DevTools shouldn't crash React, no matter what.
+    // We should still report in case we break this code.
+    console.error(err);
+  }
+}
+
+if (process.env.NODE_ENV === 'production') {
+  // DCE check should happen before ReactDOM bundle executes so that
+  // DevTools can report bad minification during injection.
+  checkDCE();
+  module.exports = __webpack_require__(54);
+} else {
+  module.exports = __webpack_require__(57);
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -687,7 +751,7 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 10 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -768,7 +832,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -811,7 +875,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 12 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -884,7 +948,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 13 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -899,7 +963,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(21);
+var isTextNode = __webpack_require__(55);
 
 /*eslint-disable no-bitwise */
 
@@ -927,7 +991,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 14 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -957,7 +1021,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 15 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -982,16 +1046,28 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(29)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(63)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(30)();
+  module.exports = __webpack_require__(64)();
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -999,15 +1075,15 @@ if (process.env.NODE_ENV !== 'production') {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(2);
+var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(19);
+var _reactDom = __webpack_require__(31);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _AddForm = __webpack_require__(28);
+var _AddForm = __webpack_require__(62);
 
 var _AddForm2 = _interopRequireDefault(_AddForm);
 
@@ -1027,23 +1103,63 @@ var App = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-    _this.onChangeText = function (text) {
-      _this.setState({ text: text });
+    _this.onSubmit = function (text) {
+      _this.setState(function (prevState) {
+        var increment = prevState.increment;
+        var todos = prevState.todos;
+
+        todos.unshift({ id: increment, text: text });
+
+        return {
+          todos: todos,
+          increment: increment + 1
+        };
+      });
+
+      _this.addForm.clear();
+      _this.addForm.focus();
     };
 
     _this.state = {
-      text: 'test'
+      // eslint-disable-next-line
+      increment: 0,
+      todos: []
     };
     return _this;
   }
 
   _createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.addForm.focus();
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      var list = this.state.todos.map(function (todo) {
+        return _react2.default.createElement(
+          'li',
+          { key: todo.id },
+          todo.text
+        );
+      });
+
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_AddForm2.default, { value: this.state.text, onChangeValue: this.onChangeText })
+        _react2.default.createElement(_AddForm2.default, {
+          ref: function ref(form) {
+            _this2.addForm = form;
+          },
+          onSubmit: this.onSubmit
+        }),
+        _react2.default.createElement(
+          'ul',
+          null,
+          list
+        )
       );
     }
   }]);
@@ -1054,7 +1170,7 @@ var App = function (_React$Component) {
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('root'));
 
 /***/ }),
-/* 17 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1071,8 +1187,8 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var m = __webpack_require__(3),
-    n = __webpack_require__(5),
+var m = __webpack_require__(7),
+    n = __webpack_require__(13),
     p = __webpack_require__(1),
     q = "function" === typeof Symbol && Symbol["for"],
     r = q ? Symbol["for"]("react.element") : 60103,
@@ -1183,7 +1299,7 @@ var U = { Children: { map: function map(a, b, e) {
     W = V && U || V;module.exports = W["default"] ? W["default"] : W;
 
 /***/ }),
-/* 18 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1204,12 +1320,12 @@ if (process.env.NODE_ENV !== "production") {
   (function () {
     'use strict';
 
-    var _assign = __webpack_require__(3);
-    var emptyObject = __webpack_require__(5);
-    var invariant = __webpack_require__(4);
-    var warning = __webpack_require__(6);
+    var _assign = __webpack_require__(7);
+    var emptyObject = __webpack_require__(13);
+    var invariant = __webpack_require__(8);
+    var warning = __webpack_require__(14);
     var emptyFunction = __webpack_require__(1);
-    var checkPropTypes = __webpack_require__(7);
+    var checkPropTypes = __webpack_require__(20);
 
     // TODO: this is special because it gets imported during build.
 
@@ -2543,49 +2659,7 @@ if (process.env.NODE_ENV !== "production") {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-function checkDCE() {
-  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-  if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function') {
-    return;
-  }
-  if (process.env.NODE_ENV !== 'production') {
-    // This branch is unreachable because this function is only called
-    // in production, but the condition is true only in development.
-    // Therefore if the branch is still here, dead code elimination wasn't
-    // properly applied.
-    // Don't change the message. React DevTools relies on it. Also make sure
-    // this message doesn't occur elsewhere in this function, or it will cause
-    // a false positive.
-    throw new Error('^_^');
-  }
-  try {
-    // Verify that the code above has been dead code eliminated (DCE'd).
-    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
-  } catch (err) {
-    // DevTools shouldn't crash React, no matter what.
-    // We should still report in case we break this code.
-    console.error(err);
-  }
-}
-
-if (process.env.NODE_ENV === 'production') {
-  // DCE check should happen before ReactDOM bundle executes so that
-  // DevTools can report bad minification during injection.
-  checkDCE();
-  module.exports = __webpack_require__(20);
-} else {
-  module.exports = __webpack_require__(23);
-}
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 20 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2605,16 +2679,16 @@ if (process.env.NODE_ENV === 'production') {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var aa = __webpack_require__(2),
-    l = __webpack_require__(9),
-    B = __webpack_require__(3),
+var aa = __webpack_require__(3),
+    l = __webpack_require__(32),
+    B = __webpack_require__(7),
     C = __webpack_require__(1),
-    ba = __webpack_require__(10),
-    da = __webpack_require__(11),
-    ea = __webpack_require__(12),
-    fa = __webpack_require__(13),
-    ia = __webpack_require__(14),
-    D = __webpack_require__(5);
+    ba = __webpack_require__(33),
+    da = __webpack_require__(34),
+    ea = __webpack_require__(35),
+    fa = __webpack_require__(36),
+    ia = __webpack_require__(37),
+    D = __webpack_require__(13);
 function E(a) {
   for (var b = arguments.length - 1, c = "Minified React error #" + a + "; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d" + a, d = 0; d < b; d++) {
     c += "\x26args[]\x3d" + encodeURIComponent(arguments[d + 1]);
@@ -4582,7 +4656,7 @@ Z.injectIntoDevTools({ findFiberByHostInstance: pb, bundleType: 0, version: "16.
     Ug = Tg && Sg || Tg;module.exports = Ug["default"] ? Ug["default"] : Ug;
 
 /***/ }),
-/* 21 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4597,7 +4671,7 @@ Z.injectIntoDevTools({ findFiberByHostInstance: pb, bundleType: 0, version: "16.
  * @typechecks
  */
 
-var isNode = __webpack_require__(22);
+var isNode = __webpack_require__(56);
 
 /**
  * @param {*} object The object to check.
@@ -4610,7 +4684,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 22 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4641,7 +4715,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 23 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4652,7 +4726,7 @@ module.exports = isNode;
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};if(process.env.NODE_ENV!=="production"){(function(){'use strict';var React=__webpack_require__(2);var invariant=__webpack_require__(4);var warning=__webpack_require__(6);var ExecutionEnvironment=__webpack_require__(9);var _assign=__webpack_require__(3);var emptyFunction=__webpack_require__(1);var EventListener=__webpack_require__(10);var getActiveElement=__webpack_require__(11);var shallowEqual=__webpack_require__(12);var containsNode=__webpack_require__(13);var focusNode=__webpack_require__(14);var emptyObject=__webpack_require__(5);var checkPropTypes=__webpack_require__(7);var hyphenateStyleName=__webpack_require__(24);var camelizeStyleName=__webpack_require__(26);/**
+ */var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};if(process.env.NODE_ENV!=="production"){(function(){'use strict';var React=__webpack_require__(3);var invariant=__webpack_require__(8);var warning=__webpack_require__(14);var ExecutionEnvironment=__webpack_require__(32);var _assign=__webpack_require__(7);var emptyFunction=__webpack_require__(1);var EventListener=__webpack_require__(33);var getActiveElement=__webpack_require__(34);var shallowEqual=__webpack_require__(35);var containsNode=__webpack_require__(36);var focusNode=__webpack_require__(37);var emptyObject=__webpack_require__(13);var checkPropTypes=__webpack_require__(20);var hyphenateStyleName=__webpack_require__(58);var camelizeStyleName=__webpack_require__(60);/**
  * WARNING: DO NOT manually require this module.
  * This is a replacement for `invariant(...)` used by the error code system
  * and will _only_ be required by the corresponding babel pass.
@@ -7625,7 +7699,7 @@ var reactDom=ReactDOM$3['default']?ReactDOM$3['default']:ReactDOM$3;module.expor
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7640,7 +7714,7 @@ var reactDom=ReactDOM$3['default']?ReactDOM$3['default']:ReactDOM$3;module.expor
 
 
 
-var hyphenate = __webpack_require__(25);
+var hyphenate = __webpack_require__(59);
 
 var msPattern = /^ms-/;
 
@@ -7667,7 +7741,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 25 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7703,7 +7777,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 26 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7718,7 +7792,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(27);
+var camelize = __webpack_require__(61);
 
 var msPattern = /^-ms-/;
 
@@ -7746,7 +7820,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 27 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7781,7 +7855,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 28 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7793,17 +7867,21 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(2);
+var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(15);
+var _propTypes = __webpack_require__(38);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactTextareaAutosize = __webpack_require__(31);
+var _reactTextareaAutosize = __webpack_require__(65);
 
 var _reactTextareaAutosize2 = _interopRequireDefault(_reactTextareaAutosize);
+
+var _keypress = __webpack_require__(99);
+
+var _keypress2 = _interopRequireDefault(_keypress);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7813,29 +7891,84 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/**
+ * - по умолчанию должен быть режим который делает submit по enter
+ * - по shift + enter активируется многострочный режим
+ * и в нем отправка тоже по shift+enter или cmd+enter или ctrl+enter
+ * -
+ */
 var AddForm = function (_React$Component) {
   _inherits(AddForm, _React$Component);
 
   function AddForm() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
     _classCallCheck(this, AddForm);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (AddForm.__proto__ || Object.getPrototypeOf(AddForm)).call(this));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddForm.__proto__ || Object.getPrototypeOf(AddForm)).call.apply(_ref, [this].concat(args))), _this), _this.onChangeValue = function (event) {
-      _this.props.onChangeValue(event.target.value);
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    _this.onChangeValue = function (event) {
+      _this.setState({ value: event.target.value });
+    };
+
+    _this.onInputRef = function (ref) {
+      _this.textarea = ref;
+    };
+
+    _this.onKeypress = function (event) {
+      var el = event.target;
+
+      var listener = new _keypress2.default.Listener(el);
+
+      listener.register_combo({
+        keys: 'enter',
+        on_keyup: function on_keyup(e) {
+          // e.preventDefault();
+          _this.submit();
+        }
+      });
+    };
+
+    _this.clear = function () {
+      _this.setState({ disabled: false, value: '' });
+    };
+
+    _this.focus = function () {
+      _this.textarea.focus();
+    };
+
+    _this.submit = function () {
+      if (!_this.state.value) {
+        // TODO error empty
+        return;
+      }
+
+      _this.setState({ disabled: true });
+      _this.props.onSubmit(_this.state.value);
+    };
+
+    _this.state = {
+      value: '',
+      disabled: false
+    };
+    return _this;
   }
+
+  // onKeyDown = (event) => {
+  //     if ()
+  //     debugger;
+  // }
 
   _createClass(AddForm, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_reactTextareaAutosize2.default, { value: this.props.value, onChange: this.onChangeValue });
+      return _react2.default.createElement(_reactTextareaAutosize2.default, {
+        inputRef: this.onInputRef,
+        className: 'todo-add-form',
+        placeholder: 'type todos here ...',
+        value: this.state.value,
+        onChange: this.onChangeValue,
+        onKeyPress: this.onKeypress,
+        disabled: this.state.disabled
+      });
     }
   }]);
 
@@ -7843,13 +7976,12 @@ var AddForm = function (_React$Component) {
 }(_react2.default.Component);
 
 AddForm.propTypes = {
-  value: _propTypes2.default.string.isRequired,
-  onChangeValue: _propTypes2.default.func.isRequired
+  onSubmit: _propTypes2.default.func.isRequired
 };
 exports.default = AddForm;
 
 /***/ }),
-/* 29 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7865,12 +7997,12 @@ exports.default = AddForm;
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var emptyFunction = __webpack_require__(1);
-var invariant = __webpack_require__(4);
-var warning = __webpack_require__(6);
-var assign = __webpack_require__(3);
+var invariant = __webpack_require__(8);
+var warning = __webpack_require__(14);
+var assign = __webpack_require__(7);
 
-var ReactPropTypesSecret = __webpack_require__(8);
-var checkPropTypes = __webpack_require__(7);
+var ReactPropTypesSecret = __webpack_require__(21);
+var checkPropTypes = __webpack_require__(20);
 
 module.exports = function (isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -8374,7 +8506,7 @@ module.exports = function (isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 30 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8388,8 +8520,8 @@ module.exports = function (isValidElement, throwOnDirectAccess) {
 
 
 var emptyFunction = __webpack_require__(1);
-var invariant = __webpack_require__(4);
-var ReactPropTypesSecret = __webpack_require__(8);
+var invariant = __webpack_require__(8);
+var ReactPropTypesSecret = __webpack_require__(21);
 
 module.exports = function () {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -8433,7 +8565,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 31 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8443,11 +8575,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = __webpack_require__(2);
+var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(15);
+var _propTypes = __webpack_require__(38);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -8844,6 +8976,350 @@ TextareaAutosize.defaultProps = {
 
 exports.default = TextareaAutosize;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+/*
+  Keypress version 2.1.4 (c) 2016 David Mauro.
+  Licensed under the Apache License, Version 2.0
+  http://www.apache.org/licenses/LICENSE-2.0
+*/
+(function () {
+  var m,
+      v,
+      y,
+      z,
+      A,
+      r,
+      w,
+      B,
+      F,
+      C,
+      G,
+      H,
+      q,
+      s,
+      p,
+      o,
+      t,
+      D,
+      I,
+      E = {}.hasOwnProperty,
+      j = [].indexOf || function (a) {
+    for (var c = 0, b = this.length; c < b; c++) {
+      if (c in this && this[c] === a) return c;
+    }return -1;
+  };r = { is_unordered: !1, is_counting: !1, is_exclusive: !1, is_solitary: !1, prevent_default: !1, prevent_repeat: !1, normalize_caps_lock: !1 };D = "meta alt option ctrl shift cmd".split(" ");o = "ctrl";m = { debug: !1 };var x = function x(a) {
+    var c, b;for (c in a) {
+      E.call(a, c) && (b = a[c], !1 !== b && (this[c] = b));
+    }this.keys = this.keys || [];this.count = this.count || 0;
+  };
+  x.prototype.allows_key_repeat = function () {
+    return !this.prevent_repeat && "function" === typeof this.on_keydown;
+  };x.prototype.reset = function () {
+    this.count = 0;return this.keyup_fired = null;
+  };var g = function g(a, c) {
+    var b, d;"undefined" !== typeof jQuery && null !== jQuery && a instanceof jQuery && (1 !== a.length && p("Warning: your jQuery selector should have exactly one object."), a = a[0]);this.should_force_event_defaults = this.should_suppress_event_defaults = !1;this.sequence_delay = 800;this._registered_combos = [];this._keys_down = [];
+    this._active_combos = [];this._sequence = [];this._sequence_timer = null;this._prevent_capture = !1;this._defaults = c || {};for (b in r) {
+      E.call(r, b) && (d = r[b], this._defaults[b] = this._defaults[b] || d);
+    }this.element = a || document.body;b = function b(a, _b, c) {
+      a.addEventListener ? a.addEventListener(_b, c) : a.attachEvent && a.attachEvent("on" + _b, c);return c;
+    };var e = this;this.keydown_event = b(this.element, "keydown", function (a) {
+      a = a || window.event;e._receive_input(a, true);return e._bug_catcher(a);
+    });var f = this;this.keyup_event = b(this.element, "keyup", function (a) {
+      a = a || window.event;return f._receive_input(a, false);
+    });var h = this;this.blur_event = b(window, "blur", function () {
+      var a, b, c, d;d = h._keys_down;b = 0;for (c = d.length; b < c; b++) {
+        a = d[b];h._key_up(a, {});
+      }return h._keys_down = [];
+    });
+  };g.prototype.destroy = function () {
+    var a;a = function a(_a, b, d) {
+      if (null != _a.removeEventListener) return _a.removeEventListener(b, d);if (null != _a.removeEvent) return _a.removeEvent("on" + b, d);
+    };a(this.element, "keydown", this.keydown_event);a(this.element, "keyup", this.keyup_event);return a(window, "blur", this.blur_event);
+  };g.prototype._bug_catcher = function (a) {
+    var c, b;if ("cmd" === o && 0 <= j.call(this._keys_down, "cmd") && "cmd" !== (c = z(null != (b = a.keyCode) ? b : a.key)) && "shift" !== c && "alt" !== c && "caps" !== c && "tab" !== c) return this._receive_input(a, !1);
+  };g.prototype._cmd_bug_check = function (a) {
+    return "cmd" === o && 0 <= j.call(this._keys_down, "cmd") && 0 > j.call(a, "cmd") ? !1 : !0;
+  };g.prototype._prevent_default = function (a, c) {
+    if ((c || this.should_suppress_event_defaults) && !this.should_force_event_defaults) if (a.preventDefault ? a.preventDefault() : a.returnValue = !1, a.stopPropagation) return a.stopPropagation();
+  };g.prototype._get_active_combos = function (a) {
+    var c, b;c = [];b = w(this._keys_down, function (b) {
+      return b !== a;
+    });b.push(a);this._match_combo_arrays(b, function (a) {
+      return function (b) {
+        if (a._cmd_bug_check(b.keys)) return c.push(b);
+      };
+    }(this));this._fuzzy_match_combo_arrays(b, function (a) {
+      return function (b) {
+        if (!(0 <= j.call(c, b)) && !b.is_solitary && a._cmd_bug_check(b.keys)) return c.push(b);
+      };
+    }(this));return c;
+  };g.prototype._get_potential_combos = function (a) {
+    var c, b, d, e, f;b = [];f = this._registered_combos;d = 0;for (e = f.length; d < e; d++) {
+      c = f[d], c.is_sequence || 0 <= j.call(c.keys, a) && this._cmd_bug_check(c.keys) && b.push(c);
+    }return b;
+  };g.prototype._add_to_active_combos = function (a) {
+    var c, b, d, e, f, h, i, g, n, k, l;h = !1;f = !0;d = !1;if (0 <= j.call(this._active_combos, a)) return !0;if (this._active_combos.length) {
+      e = i = 0;for (k = this._active_combos.length; 0 <= k ? i < k : i > k; e = 0 <= k ? ++i : --i) {
+        if ((c = this._active_combos[e]) && c.is_exclusive && a.is_exclusive) {
+          c = c.keys;if (!h) {
+            g = 0;for (n = c.length; g < n; g++) {
+              if (b = c[g], h = !0, 0 > j.call(a.keys, b)) {
+                h = !1;break;
+              }
+            }
+          }if (f && !h) {
+            l = a.keys;g = 0;for (n = l.length; g < n; g++) {
+              if (b = l[g], f = !1, 0 > j.call(c, b)) {
+                f = !0;break;
+              }
+            }
+          }h && (d ? (c = this._active_combos.splice(e, 1)[0], null != c && c.reset()) : (c = this._active_combos.splice(e, 1, a)[0], null != c && c.reset(), d = !0), f = !1);
+        }
+      }
+    }f && this._active_combos.unshift(a);return h || f;
+  };g.prototype._remove_from_active_combos = function (a) {
+    var c, b, d, e;b = d = 0;for (e = this._active_combos.length; 0 <= e ? d < e : d > e; b = 0 <= e ? ++d : --d) {
+      if (c = this._active_combos[b], c === a) {
+        a = this._active_combos.splice(b, 1)[0];a.reset();break;
+      }
+    }
+  };g.prototype._get_possible_sequences = function () {
+    var a, c, b, d, e, f, h, i, g, n, k, l;d = [];n = this._registered_combos;f = 0;for (g = n.length; f < g; f++) {
+      a = n[f];c = h = 1;for (k = this._sequence.length; 1 <= k ? h <= k : h >= k; c = 1 <= k ? ++h : --h) {
+        if (e = this._sequence.slice(-c), a.is_sequence) {
+          if (0 > j.call(a.keys, "shift") && (e = w(e, function (a) {
+            return "shift" !== a;
+          }), !e.length)) continue;c = i = 0;for (l = e.length; 0 <= l ? i < l : i > l; c = 0 <= l ? ++i : --i) {
+            if (a.keys[c] === e[c]) b = !0;else {
+              b = !1;break;
+            }
+          }b && d.push(a);
+        }
+      }
+    }return d;
+  };g.prototype._add_key_to_sequence = function (a, c) {
+    var b, d, e, f;this._sequence.push(a);d = this._get_possible_sequences();if (d.length) {
+      e = 0;for (f = d.length; e < f; e++) {
+        b = d[e], this._prevent_default(c, b.prevent_default);
+      }this._sequence_timer && clearTimeout(this._sequence_timer);if (-1 < this.sequence_delay) {
+        var h = this;this._sequence_timer = setTimeout(function () {
+          return h._sequence = [];
+        }, this.sequence_delay);
+      }
+    } else this._sequence = [];
+  };g.prototype._get_sequence = function (a) {
+    var c, b, d, e, f, h, i, g, n, k, l, u;k = this._registered_combos;h = 0;for (n = k.length; h < n; h++) {
+      if (c = k[h], c.is_sequence) {
+        b = i = 1;for (l = this._sequence.length; 1 <= l ? i <= l : i >= l; b = 1 <= l ? ++i : --i) {
+          if (f = w(this._sequence, function (a) {
+            return 0 <= j.call(c.keys, "shift") ? !0 : "shift" !== a;
+          }).slice(-b), c.keys.length === f.length) {
+            b = g = 0;for (u = f.length; 0 <= u ? g < u : g > u; b = 0 <= u ? ++g : --g) {
+              if (e = f[b], !(0 > j.call(c.keys, "shift") && "shift" === e) && !("shift" === a && 0 > j.call(c.keys, "shift"))) if (c.keys[b] === e) d = !0;else {
+                d = !1;break;
+              }
+            }
+          }
+        }if (d) return c.is_exclusive && (this._sequence = []), c;
+      }
+    }return !1;
+  };g.prototype._receive_input = function (a, c) {
+    var b, d;if (this._prevent_capture) this._keys_down.length && (this._keys_down = []);else if (b = z(null != (d = a.keyCode) ? d : a.key), (c || this._keys_down.length || !("alt" === b || b === o)) && b) return c ? this._key_down(b, a) : this._key_up(b, a);
+  };g.prototype._fire = function (a, c, b, d) {
+    "function" === typeof c["on_" + a] && this._prevent_default(b, !0 !== c["on_" + a].call(c["this"], b, c.count, d));"release" === a && (c.count = 0);if ("keyup" === a) return c.keyup_fired = !0;
+  };g.prototype._match_combo_arrays = function (a, c) {
+    var b, d, e, f, h;h = this._registered_combos;e = 0;for (f = h.length; e < f; e++) {
+      d = h[e], b = a.slice(0), d.normalize_caps_lock && 0 <= j.call(b, "caps") && b.splice(b.indexOf("caps"), 1), (!d.is_unordered && y(b, d.keys) || d.is_unordered && v(b, d.keys)) && c(d);
+    }
+  };g.prototype._fuzzy_match_combo_arrays = function (a, c) {
+    var b, d, e, f;f = this._registered_combos;d = 0;for (e = f.length; d < e; d++) {
+      b = f[d], (!b.is_unordered && C(b.keys, a) || b.is_unordered && F(b.keys, a)) && c(b);
+    }
+  };g.prototype._keys_remain = function (a) {
+    var c, b, d, e;e = a.keys;b = 0;for (d = e.length; b < d; b++) {
+      if (a = e[b], 0 <= j.call(this._keys_down, a)) {
+        c = !0;break;
+      }
+    }return c;
+  };g.prototype._key_down = function (a, c) {
+    var b, d, e, f, h;(b = A(a, c)) && (a = b);this._add_key_to_sequence(a, c);(b = this._get_sequence(a)) && this._fire("keydown", b, c);for (e in t) {
+      b = t[e], c[b] && (e === a || 0 <= j.call(this._keys_down, e) || this._keys_down.push(e));
+    }for (e in t) {
+      if (b = t[e], e !== a && 0 <= j.call(this._keys_down, e) && !c[b] && !("cmd" === e && "cmd" !== o)) {
+        b = d = 0;for (f = this._keys_down.length; 0 <= f ? d < f : d > f; b = 0 <= f ? ++d : --d) {
+          this._keys_down[b] === e && this._keys_down.splice(b, 1);
+        }
+      }
+    }d = this._get_active_combos(a);e = this._get_potential_combos(a);f = 0;for (h = d.length; f < h; f++) {
+      b = d[f], this._handle_combo_down(b, e, a, c);
+    }if (e.length) {
+      d = 0;for (f = e.length; d < f; d++) {
+        b = e[d], this._prevent_default(c, b.prevent_default);
+      }
+    }0 > j.call(this._keys_down, a) && this._keys_down.push(a);
+  };g.prototype._handle_combo_down = function (a, c, b, d) {
+    var e, f, h, g, m;if (0 > j.call(a.keys, b)) return !1;this._prevent_default(d, a && a.prevent_default);e = !1;if (0 <= j.call(this._keys_down, b) && (e = !0, !a.allows_key_repeat())) return !1;h = this._add_to_active_combos(a, b);b = a.keyup_fired = !1;if (a.is_exclusive) {
+      g = 0;for (m = c.length; g < m; g++) {
+        if (f = c[g], f.is_exclusive && f.keys.length > a.keys.length) {
+          b = !0;break;
+        }
+      }
+    }if (!b && (a.is_counting && "function" === typeof a.on_keydown && (a.count += 1), h)) return this._fire("keydown", a, d, e);
+  };g.prototype._key_up = function (a, c) {
+    var b, d, e, f, h, g;b = a;(e = A(a, c)) && (a = e);e = s[b];c.shiftKey ? e && 0 <= j.call(this._keys_down, e) || (a = b) : b && 0 <= j.call(this._keys_down, b) || (a = e);(f = this._get_sequence(a)) && this._fire("keyup", f, c);if (0 > j.call(this._keys_down, a)) return !1;f = h = 0;for (g = this._keys_down.length; 0 <= g ? h < g : h > g; f = 0 <= g ? ++h : --h) {
+      if ((d = this._keys_down[f]) === a || d === e || d === b) {
+        this._keys_down.splice(f, 1);break;
+      }
+    }d = this._active_combos.length;e = [];g = this._active_combos;f = 0;for (h = g.length; f < h; f++) {
+      b = g[f], 0 <= j.call(b.keys, a) && e.push(b);
+    }f = 0;for (h = e.length; f < h; f++) {
+      b = e[f], this._handle_combo_up(b, c, a);
+    }if (1 < d) {
+      h = this._active_combos;d = 0;for (f = h.length; d < f; d++) {
+        b = h[d], void 0 === b || 0 <= j.call(e, b) || this._keys_remain(b) || this._remove_from_active_combos(b);
+      }
+    }
+  };g.prototype._handle_combo_up = function (a, c, b) {
+    var d, e;this._prevent_default(c, a && a.prevent_default);e = this._keys_remain(a);if (!a.keyup_fired && (d = this._keys_down.slice(), d.push(b), !a.is_solitary || v(d, a.keys))) this._fire("keyup", a, c), a.is_counting && "function" === typeof a.on_keyup && "function" !== typeof a.on_keydown && (a.count += 1);e || (this._fire("release", a, c), this._remove_from_active_combos(a));
+  };g.prototype.simple_combo = function (a, c) {
+    return this.register_combo({ keys: a, on_keydown: c });
+  };g.prototype.counting_combo = function (a, c) {
+    return this.register_combo({ keys: a, is_counting: !0, is_unordered: !1, on_keydown: c });
+  };g.prototype.sequence_combo = function (a, c) {
+    return this.register_combo({ keys: a,
+      on_keydown: c, is_sequence: !0, is_exclusive: !0 });
+  };g.prototype.register_combo = function (a) {
+    var c, b, d;"string" === typeof a.keys && (a.keys = a.keys.split(" "));d = this._defaults;for (c in d) {
+      E.call(d, c) && (b = d[c], void 0 === a[c] && (a[c] = b));
+    }a = new x(a);if (I(a)) return this._registered_combos.push(a), a;
+  };g.prototype.register_many = function (a) {
+    var c, b, d, e;e = [];b = 0;for (d = a.length; b < d; b++) {
+      c = a[b], e.push(this.register_combo(c));
+    }return e;
+  };g.prototype.unregister_combo = function (a) {
+    var c, b, d, e, f, g;if (!a) return !1;var i = this;b = function b(a) {
+      var b, c, d, e;e = [];b = c = 0;for (d = i._registered_combos.length; 0 <= d ? c < d : c > d; b = 0 <= d ? ++c : --c) {
+        if (a === i._registered_combos[b]) {
+          i._registered_combos.splice(b, 1);break;
+        } else e.push(void 0);
+      }return e;
+    };if (a instanceof x) return b(a);"string" === typeof a && (a = a.split(" "));f = this._registered_combos;g = [];d = 0;for (e = f.length; d < e; d++) {
+      c = f[d], null != c && (c.is_unordered && v(a, c.keys) || !c.is_unordered && y(a, c.keys) ? g.push(b(c)) : g.push(void 0));
+    }return g;
+  };g.prototype.unregister_many = function (a) {
+    var c, b, d, e;e = [];b = 0;for (d = a.length; b < d; b++) {
+      c = a[b], e.push(this.unregister_combo(c));
+    }return e;
+  };g.prototype.get_registered_combos = function () {
+    return this._registered_combos;
+  };g.prototype.reset = function () {
+    return this._registered_combos = [];
+  };g.prototype.listen = function () {
+    return this._prevent_capture = !1;
+  };g.prototype.stop_listening = function () {
+    return this._prevent_capture = !0;
+  };g.prototype.get_meta_key = function () {
+    return o;
+  };m.Listener = g;z = function z(a) {
+    return q[a];
+  };w = function w(a, c) {
+    var b;if (a.filter) return a.filter(c);var d, e, f;f = [];d = 0;for (e = a.length; d < e; d++) {
+      b = a[d], c(b) && f.push(b);
+    }return f;
+  };v = function v(a, c) {
+    var b, d, e;if (a.length !== c.length) return !1;d = 0;for (e = a.length; d < e; d++) {
+      if (b = a[d], !(0 <= j.call(c, b))) return !1;
+    }return !0;
+  };y = function y(a, c) {
+    var b, d, e;if (a.length !== c.length) return !1;b = d = 0;for (e = a.length; 0 <= e ? d < e : d > e; b = 0 <= e ? ++d : --d) {
+      if (a[b] !== c[b]) return !1;
+    }return !0;
+  };F = function F(a, c) {
+    var b, d, e;d = 0;for (e = a.length; d < e; d++) {
+      if (b = a[d], 0 > j.call(c, b)) return !1;
+    }return !0;
+  };B = Array.prototype.indexOf || function (a, c) {
+    var b, d, e;b = d = 0;for (e = a.length; 0 <= e ? d <= e : d >= e; b = 0 <= e ? ++d : --d) {
+      if (a[b] === c) return b;
+    }return -1;
+  };C = function C(a, c) {
+    var b, d, e, f;e = d = 0;for (f = a.length; e < f; e++) {
+      if (b = a[e], b = B.call(c, b), b >= d) d = b;else return !1;
+    }return !0;
+  };p = function p() {
+    if (m.debug) return console.log.apply(console, arguments);
+  };G = function G(a) {
+    var c, b, d;c = !1;for (d in q) {
+      if (b = q[d], a === b) {
+        c = !0;break;
+      }
+    }if (!c) for (d in s) {
+      if (b = s[d], a === b) {
+        c = !0;break;
+      }
+    }return c;
+  };I = function I(a) {
+    var c, b, d, e, f, g, i;f = !0;a.keys.length || p("You're trying to bind a combo with no keys:", a);b = g = 0;for (i = a.keys.length; 0 <= i ? g < i : g > i; b = 0 <= i ? ++g : --g) {
+      d = a.keys[b], (c = H[d]) && (d = a.keys[b] = c), "meta" === d && a.keys.splice(b, 1, o), "cmd" === d && p('Warning: use the "meta" key rather than "cmd" for Windows compatibility');
+    }i = a.keys;c = 0;for (g = i.length; c < g; c++) {
+      d = i[c], G(d) || (p('Do not recognize the key "' + d + '"'), f = !1);
+    }if (0 <= j.call(a.keys, "meta") || 0 <= j.call(a.keys, "cmd")) {
+      c = a.keys.slice();g = 0;for (i = D.length; g < i; g++) {
+        d = D[g], -1 < (b = B.call(c, d)) && c.splice(b, 1);
+      }1 < c.length && (p("META and CMD key combos cannot have more than 1 non-modifier keys", a, c), f = !1);
+    }for (e in a) {
+      "undefined" === r[e] && p("The property " + e + " is not a valid combo property. Your combo has still been registered.");
+    }return f;
+  };A = function A(a, c) {
+    var b;if (!c.shiftKey) return !1;b = s[a];return null != b ? b : !1;
+  };t = { cmd: "metaKey", ctrl: "ctrlKey", shift: "shiftKey", alt: "altKey" };H = { escape: "esc", control: "ctrl", command: "cmd", "break": "pause", windows: "cmd", option: "alt", caps_lock: "caps", apostrophe: "'", semicolon: ";", tilde: "~", accent: "`", scroll_lock: "scroll", num_lock: "num" };s = { "/": "?", ".": ">", ",": "<", "'": '"', ";": ":", "[": "{", "]": "}", "\\": "|", "`": "~", "=": "+", "-": "_",
+    1: "!", 2: "@", 3: "#", 4: "$", 5: "%", 6: "^", 7: "&", 8: "*", 9: "(", "0": ")" };q = { "0": "\\", 8: "backspace", 9: "tab", 12: "num", 13: "enter", 16: "shift", 17: "ctrl", 18: "alt", 19: "pause", 20: "caps", 27: "esc", 32: "space", 33: "pageup", 34: "pagedown", 35: "end", 36: "home", 37: "left", 38: "up", 39: "right", 40: "down", 44: "print", 45: "insert", 46: "delete", 48: "0", 49: "1", 50: "2", 51: "3", 52: "4", 53: "5", 54: "6", 55: "7", 56: "8", 57: "9", 65: "a", 66: "b", 67: "c", 68: "d", 69: "e", 70: "f", 71: "g", 72: "h", 73: "i", 74: "j", 75: "k", 76: "l", 77: "m", 78: "n", 79: "o", 80: "p", 81: "q", 82: "r",
+    83: "s", 84: "t", 85: "u", 86: "v", 87: "w", 88: "x", 89: "y", 90: "z", 91: "cmd", 92: "cmd", 93: "cmd", 96: "num_0", 97: "num_1", 98: "num_2", 99: "num_3", 100: "num_4", 101: "num_5", 102: "num_6", 103: "num_7", 104: "num_8", 105: "num_9", 106: "num_multiply", 107: "num_add", 108: "num_enter", 109: "num_subtract", 110: "num_decimal", 111: "num_divide", 112: "f1", 113: "f2", 114: "f3", 115: "f4", 116: "f5", 117: "f6", 118: "f7", 119: "f8", 120: "f9", 121: "f10", 122: "f11", 123: "f12", 124: "print", 144: "num", 145: "scroll", 186: ";", 187: "=", 188: ",", 189: "-", 190: ".", 191: "/", 192: "`",
+    219: "[", 220: "\\", 221: "]", 222: "'", 223: "`", 224: "cmd", 225: "alt", 57392: "ctrl", 63289: "num", 59: ";", 61: "=", 173: "-" };m._keycode_dictionary = q;m._is_array_in_array_sorted = C;-1 !== navigator.userAgent.indexOf("Mac OS X") && (o = "cmd");-1 !== navigator.userAgent.indexOf("Opera") && (q["17"] = "cmd"); true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+    return m;
+  }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : "undefined" !== typeof exports && null !== exports ? exports.keypress = m : window.keypress = m;
+}).call(undefined);
 
 /***/ })
 /******/ ]);

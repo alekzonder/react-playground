@@ -17,6 +17,7 @@
   "dependencies": {
     "compression": "^1.7.1",
     "express": "^4.16.2",
+    "keypress.js": "^2.1.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
