@@ -14,7 +14,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.addForm.focus();
+    // this.addForm.focus();
   }
 
   onSubmit = (text) => {

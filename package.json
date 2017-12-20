@@ -21,6 +21,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-jss": "^8.1.0",
     "react-textarea-autosize": "^5.2.1"
   },
   "devDependencies": {

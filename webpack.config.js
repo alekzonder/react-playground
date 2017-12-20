@@ -29,7 +29,6 @@ if (env === 'production') {
   ];
 }
 
-
 module.exports = {
   entry: './src/index.jsx',
   resolve: {
@@ -40,9 +39,7 @@ module.exports = {
     filename: 'main.js',
   },
   module: {
-    rules: [
-      { test: /\.jsx?$/, use: 'babel-loader' },
-    ],
+    rules: [{ test: /\.jsx?$/, use: 'babel-loader', exclude: /(node_modules)/ }],
   },
   plugins,
 };

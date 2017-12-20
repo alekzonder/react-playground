@@ -5,6 +5,7 @@ import Keypress from 'keypress.js/keypress-2.1.4.min';
 
 /**
  * - по умолчанию должен быть режим который делает submit по enter
+ *  пока отправка всегда по cmd enter, ctrl enter
  * - по shift + enter активируется многострочный режим
  * и в нем отправка тоже по shift+enter или cmd+enter или ctrl+enter
  * -
@@ -35,19 +36,21 @@ export default class AddForm extends React.Component {
 
     const listener = new Keypress.Listener(el);
 
+    // TODO remove listeners on destroy
     listener.register_combo({
-      keys: 'enter',
-      on_keyup: (e) => {
-        // e.preventDefault();
+      keys: 'ctrl enter',
+      on_keyup: () => {
+        this.submit();
+      },
+    });
+
+    listener.register_combo({
+      keys: 'cmd enter',
+      on_keyup: () => {
         this.submit();
       },
     });
   };
-
-  // onKeyDown = (event) => {
-  //     if ()
-  //     debugger;
-  // }
 
   clear = () => {
     this.setState({ disabled: false, value: '' });
