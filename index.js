@@ -2,7 +2,7 @@ const express = require('express');
 const compression = require('compression');
 
 const config = {
-  port: 8080,
+    port: 8080,
 };
 
 const app = express();
@@ -12,7 +12,7 @@ app.use(compression());
 app.use('/static', express.static(`${__dirname}/public/static`));
 
 app.get('/', (req, res) => {
-  res.type('html').send(`
+    res.type('html').send(`
         <html>
             <head>
                 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
@@ -34,5 +34,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(config.port, () => {
-  console.log(`listen on http://localhost:${config.port}`);
+    console.log(`listen on http://localhost:${config.port}`);
 });

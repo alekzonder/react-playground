@@ -1,9 +1,9 @@
 describe('A suite is just a function', () => {
-  let a;
+    let a;
 
-  it('and so is a spec', () => {
-    a = true;
+    it('and so is a spec', () => {
+        a = true;
 
-    expect(a).toBe(true);
-  });
+        expect(a).toBe(true);
+    });
 });

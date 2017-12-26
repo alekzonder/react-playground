@@ -9,6 +9,10 @@
         "jasmine"
     ],
     "rules": {
-        "no-console": [0]
+        "no-console": [0],
+        "indent": ["error", 4],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "no-underscore-dangle": [0]
     }
 }

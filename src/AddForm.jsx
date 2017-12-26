@@ -3,84 +3,106 @@ import PropTypes from 'prop-types';
 import Textarea from 'react-textarea-autosize';
 import Keypress from 'keypress.js/keypress-2.1.4.min';
 
-/**
- * - по умолчанию должен быть режим который делает submit по enter
- *  пока отправка всегда по cmd enter, ctrl enter
- * - по shift + enter активируется многострочный режим
- * и в нем отправка тоже по shift+enter или cmd+enter или ctrl+enter
- * -
- */
 export default class AddForm extends React.Component {
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
-
-  constructor() {
-    super();
-    this.state = {
-      value: '',
-      disabled: false,
+    static propTypes = {
+        onSubmit: PropTypes.func.isRequired,
     };
-  }
 
-  onChangeValue = (event) => {
-    this.setState({ value: event.target.value });
-  };
+    constructor() {
+        super();
 
-  onInputRef = (ref) => {
-    this.textarea = ref;
-  };
+        this.state = {
+            value: '',
+            disabled: false,
+            multiline: false,
+        };
 
-  onKeypress = (event) => {
-    const el = event.target;
+        // TODO register, destroy listeners
+        // this._keyListeners = {
+        //     enter: null,
+        //     ctrlEnter: null,
+        //     cmdEnter: null,
+        // };
 
-    const listener = new Keypress.Listener(el);
-
-    // TODO remove listeners on destroy
-    listener.register_combo({
-      keys: 'ctrl enter',
-      on_keyup: () => {
-        this.submit();
-      },
-    });
-
-    listener.register_combo({
-      keys: 'cmd enter',
-      on_keyup: () => {
-        this.submit();
-      },
-    });
-  };
-
-  clear = () => {
-    this.setState({ disabled: false, value: '' });
-  };
-
-  focus = () => {
-    this.textarea.focus();
-  };
-
-  submit = () => {
-    if (!this.state.value) {
-      // TODO error empty
-      return;
+        this.textarea = null;
     }
 
-    this.setState({ disabled: true });
-    this.props.onSubmit(this.state.value);
-  };
+   onChangeValue = (event) => {
+       this.setState({ value: event.target.value });
+   };
 
-  render() {
-    return (
-      <Textarea
-        inputRef={this.onInputRef}
-        className="todo-add-form"
-        placeholder="type todos here ..."
-        value={this.state.value}
-        onChange={this.onChangeValue}
-        onKeyPress={this.onKeypress}
-        disabled={this.state.disabled}
-      />
-    );
-  }
+   onInputRef = (ref) => {
+       this.textarea = ref;
+       this._initKeypress();
+   };
+
+   clear = () => {
+       this.setState({ disabled: false, value: '' });
+   };
+
+   focus = () => {
+       this.textarea.focus();
+   };
+
+   submit = () => {
+       if (!this.state.value) {
+           // TODO error empty
+           return;
+       }
+
+       this.setState({ disabled: true });
+       this.props.onSubmit(this.state.value);
+   };
+
+   _initKeypress() {
+       const listener = new Keypress.Listener(this._textarea);
+
+       listener.register_combo({
+           keys: 'enter',
+           on_keydown: () => {
+               if (this.state.multiline) {
+                   return true;
+               }
+
+               this.submit();
+
+               return false;
+           },
+       });
+
+       // TODO remove listeners on destroy
+       listener.register_combo({
+           keys: 'ctrl enter',
+           on_keyup: () => {
+               this.submit();
+           },
+       });
+
+       listener.register_combo({
+           keys: 'cmd enter',
+           on_keyup: () => {
+               this.submit();
+           },
+       });
+   }
+
+   render() {
+       const style = {};
+
+       if (!this.state.multiline) {
+           style.resize = 'none';
+       }
+
+       return (
+           <Textarea
+               inputRef={this.onInputRef}
+               className="todo-add-form"
+               placeholder="type todos here ..."
+               style={style}
+               value={this.state.value}
+               onChange={this.onChangeValue}
+               disabled={this.state.disabled}
+           />
+       );
+   }
 }
