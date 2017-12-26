@@ -18447,7 +18447,7 @@ var AddForm = function (_React$Component) {
                 return;
             }
 
-            _this.setState({ disabled: true });
+            _this.setState({ disabled: true, multiline: false });
             _this.props.onSubmit(_this.state.value);
         };
 
@@ -18490,9 +18490,18 @@ var AddForm = function (_React$Component) {
 
             // TODO remove listeners on destroy
             listener.register_combo({
-                keys: 'ctrl enter',
-                on_keyup: function on_keyup() {
-                    _this2.submit();
+                keys: 'shift enter',
+                on_keydown: function on_keydown() {
+                    if (_this2.state.multiline === false) {
+                        _this2.setState(function (prevState) {
+                            return {
+                                multiline: true,
+                                value: prevState.value + '\n'
+                            };
+                        });
+                    }
+
+                    return false;
                 }
             });
 

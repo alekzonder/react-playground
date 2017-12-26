@@ -50,7 +50,7 @@ export default class AddForm extends React.Component {
            return;
        }
 
-       this.setState({ disabled: true });
+       this.setState({ disabled: true, multiline: false });
        this.props.onSubmit(this.state.value);
    };
 
@@ -72,9 +72,16 @@ export default class AddForm extends React.Component {
 
        // TODO remove listeners on destroy
        listener.register_combo({
-           keys: 'ctrl enter',
-           on_keyup: () => {
-               this.submit();
+           keys: 'shift enter',
+           on_keydown: () => {
+               if (this.state.multiline === false) {
+                   this.setState(prevState => ({
+                       multiline: true,
+                       value: `${prevState.value}\n`,
+                   }));
+               }
+
+               return false;
            },
        });
 
