@@ -17,99 +17,102 @@ export default class AddForm extends React.Component {
             multiline: false,
         };
 
-        // TODO register, destroy listeners
-        // this._keyListeners = {
-        //     enter: null,
-        //     ctrlEnter: null,
-        //     cmdEnter: null,
-        // };
-
         this.textarea = null;
+
+        this._keyListener = null;
     }
 
-   onChangeValue = (event) => {
-       this.setState({ value: event.target.value });
-   };
+    componentWillMount() {
+        this._initKeypress();
+    }
 
-   onInputRef = (ref) => {
-       this.textarea = ref;
-       this._initKeypress();
-   };
+    componentWillUnmount() {
+        if (this._keyListener) {
+            this._keyListener.destroy();
+        }
+    }
 
-   clear = () => {
-       this.setState({ disabled: false, value: '' });
-   };
+    onChangeValue = (event) => {
+        this.setState({ value: event.target.value });
+    };
 
-   focus = () => {
-       this.textarea.focus();
-   };
+    onInputRef = (ref) => {
+        this.textarea = ref;
+    };
 
-   submit = () => {
-       if (!this.state.value) {
-           // TODO error empty
-           return;
-       }
+    clear = () => {
+        this.setState({ disabled: false, value: '' });
+    };
 
-       this.setState({ disabled: true, multiline: false });
-       this.props.onSubmit(this.state.value);
-   };
+    focus = () => {
+        this.textarea.focus();
+    };
 
-   _initKeypress() {
-       const listener = new Keypress.Listener(this._textarea);
+    submit = () => {
+        if (!this.state.value) {
+            // TODO error empty
+            return;
+        }
 
-       listener.register_combo({
-           keys: 'enter',
-           on_keydown: () => {
-               if (this.state.multiline) {
-                   return true;
-               }
+        this.setState({ disabled: true, multiline: false });
+        this.props.onSubmit(this.state.value);
+    };
 
-               this.submit();
+    _initKeypress() {
+        this._keyListener = new Keypress.Listener(this._textarea);
 
-               return false;
-           },
-       });
+        this._keyListener.register_combo({
+            keys: 'enter',
+            on_keydown: () => {
+                if (this.state.multiline) {
+                    return true;
+                }
 
-       // TODO remove listeners on destroy
-       listener.register_combo({
-           keys: 'shift enter',
-           on_keydown: () => {
-               if (this.state.multiline === false) {
-                   this.setState(prevState => ({
-                       multiline: true,
-                       value: `${prevState.value}\n`,
-                   }));
-               }
+                this.submit();
 
-               return false;
-           },
-       });
+                return false;
+            },
+        });
 
-       listener.register_combo({
-           keys: 'cmd enter',
-           on_keyup: () => {
-               this.submit();
-           },
-       });
-   }
+        this._keyListener.register_combo({
+            keys: 'shift enter',
+            on_keydown: () => {
+                if (this.state.multiline === false) {
+                    this.setState(prevState => ({
+                        multiline: true,
+                        value: `${prevState.value}\n`,
+                    }));
+                }
 
-   render() {
-       const style = {};
+                return false;
+            },
+        });
 
-       if (!this.state.multiline) {
-           style.resize = 'none';
-       }
+        this._keyListener.register_combo({
+            keys: 'cmd enter',
+            on_keyup: () => {
+                this.submit();
+            },
+        });
+    }
 
-       return (
-           <Textarea
-               inputRef={this.onInputRef}
-               className="todo-add-form"
-               placeholder="type todos here ..."
-               style={style}
-               value={this.state.value}
-               onChange={this.onChangeValue}
-               disabled={this.state.disabled}
-           />
-       );
-   }
+    render() {
+        const style = {};
+
+        if (!this.state.multiline) {
+            style.resize = 'none';
+        }
+
+        return (
+            <Textarea
+                inputRef={this.onInputRef}
+                className="todo-add-form"
+                placeholder="type todos here ..."
+                style={style}
+                value={this.state.value}
+                onChange={this.onChangeValue}
+                disabled={this.state.disabled}
+            />
+        );
+    }
 }

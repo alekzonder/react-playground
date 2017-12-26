@@ -1017,75 +1017,96 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var App = function (_React$Component) {
-  _inherits(App, _React$Component);
+    _inherits(App, _React$Component);
 
-  function App(props) {
-    _classCallCheck(this, App);
+    function App(props) {
+        _classCallCheck(this, App);
 
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-    _this.onSubmit = function (text) {
-      _this.setState(function (prevState) {
-        var increment = prevState.increment;
-        var todos = prevState.todos;
+        _this.onSubmit = function (text) {
+            _this.setState(function (prevState) {
+                var increment = prevState.increment;
+                var todos = prevState.todos;
 
-        todos.unshift({ id: increment, text: text });
+                todos.unshift({ id: increment, text: text });
 
-        return {
-          todos: todos,
-          increment: increment + 1
+                return {
+                    todos: todos,
+                    increment: increment + 1
+                };
+            });
+
+            _this.addForm.clear();
+            _this.addForm.focus();
         };
-      });
 
-      _this.addForm.clear();
-      _this.addForm.focus();
-    };
+        _this.toggleForm = function () {
+            _this.setState(function (prevState) {
+                return {
+                    hasForm: !prevState.hasForm
+                };
+            });
+        };
 
-    _this.state = {
-      // eslint-disable-next-line
-      increment: 0,
-      todos: []
-    };
-    return _this;
-  }
+        _this.state = {
+            // eslint-disable-next-line
+            increment: 0,
+            todos: [],
 
-  _createClass(App, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      // this.addForm.focus();
+            hasForm: true
+        };
+        return _this;
     }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
 
-      var list = this.state.todos.map(function (todo) {
-        return _react2.default.createElement(
-          'li',
-          { key: todo.id },
-          todo.text
-        );
-      });
+    _createClass(App, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.addForm.focus();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
 
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_AddForm2.default, {
-          ref: function ref(form) {
-            _this2.addForm = form;
-          },
-          onSubmit: this.onSubmit
-        }),
-        _react2.default.createElement(
-          'ul',
-          null,
-          list
-        )
-      );
-    }
-  }]);
+            var list = this.state.todos.map(function (todo) {
+                return _react2.default.createElement(
+                    'li',
+                    { key: todo.id },
+                    todo.text
+                );
+            });
 
-  return App;
+            var addForm = null;
+
+            if (this.state.hasForm) {
+                addForm = _react2.default.createElement(_AddForm2.default, {
+                    ref: function ref(form) {
+                        _this2.addForm = form;
+                    },
+                    onSubmit: this.onSubmit
+                });
+            }
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'button',
+                    { onClick: this.toggleForm },
+                    'toggle form'
+                ),
+                addForm,
+                _react2.default.createElement(
+                    'ul',
+                    null,
+                    list
+                )
+            );
+        }
+    }]);
+
+    return App;
 }(_react2.default.Component);
 
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('root'));
@@ -18430,7 +18451,6 @@ var AddForm = function (_React$Component) {
 
         _this.onInputRef = function (ref) {
             _this.textarea = ref;
-            _this._initKeypress();
         };
 
         _this.clear = function () {
@@ -18457,25 +18477,32 @@ var AddForm = function (_React$Component) {
             multiline: false
         };
 
-        // TODO register, destroy listeners
-        // this._keyListeners = {
-        //     enter: null,
-        //     ctrlEnter: null,
-        //     cmdEnter: null,
-        // };
-
         _this.textarea = null;
+
+        _this._keyListener = null;
         return _this;
     }
 
     _createClass(AddForm, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this._initKeypress();
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            if (this._keyListener) {
+                this._keyListener.destroy();
+            }
+        }
+    }, {
         key: '_initKeypress',
         value: function _initKeypress() {
             var _this2 = this;
 
-            var listener = new _keypress2.default.Listener(this._textarea);
+            this._keyListener = new _keypress2.default.Listener(this._textarea);
 
-            listener.register_combo({
+            this._keyListener.register_combo({
                 keys: 'enter',
                 on_keydown: function on_keydown() {
                     if (_this2.state.multiline) {
@@ -18488,8 +18515,7 @@ var AddForm = function (_React$Component) {
                 }
             });
 
-            // TODO remove listeners on destroy
-            listener.register_combo({
+            this._keyListener.register_combo({
                 keys: 'shift enter',
                 on_keydown: function on_keydown() {
                     if (_this2.state.multiline === false) {
@@ -18505,7 +18531,7 @@ var AddForm = function (_React$Component) {
                 }
             });
 
-            listener.register_combo({
+            this._keyListener.register_combo({
                 keys: 'cmd enter',
                 on_keyup: function on_keyup() {
                     _this2.submit();
