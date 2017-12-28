@@ -1,3 +1,20 @@
 .todo-add-form {
     min-height: 1rem!important;
 }
+
+.todo {
+
+}
+
+.todo:hover {
+    background-color: #f4f5f6;
+}
+
+.todo_done {
+    text-decoration: line-through;
+    color: lightgray;
+}
+
+.todo__done-checkbox {
+    margin-top: 5px;
+}

@@ -15,7 +15,6 @@ app.get('/', (req, res) => {
     res.type('html').send(`
         <html>
             <head>
-                <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
                 <link rel="stylesheet" href="/static/vendors/normalize.css">
                 <link rel="stylesheet" href="/static/vendors/milligram.min.css">
                 <link rel="stylesheet" href="/static/style.css">
@@ -24,6 +23,7 @@ app.get('/', (req, res) => {
             <body>
                 <div style="margin-top: 10px;" class="container" id="root"></div>
                 <script src="/static/app/main.js"></script>
+                <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
             </body>
         </html>
         `);
