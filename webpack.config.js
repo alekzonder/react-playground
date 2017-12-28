@@ -35,7 +35,7 @@ module.exports = {
         extensions: ['.js', '.jsx'],
     },
     output: {
-        path: path.resolve(__dirname, 'public/static'),
+        path: path.resolve(__dirname, 'public/static/app'),
         filename: 'main.js',
     },
     module: {
