@@ -5,16 +5,33 @@ import Keypress from 'keypress.js/keypress-2.1.4.min';
 
 export default class AddForm extends React.Component {
     static propTypes = {
+        options: PropTypes.shape({
+            autoFocus: PropTypes.bool,
+            multiline: PropTypes.bool,
+            showButtons: PropTypes.bool,
+        }),
+        value: PropTypes.string,
         onSubmit: PropTypes.func.isRequired,
+        onCancel: PropTypes.func,
     };
 
-    constructor() {
-        super();
+    static defaultProps = {
+        options: {
+            autoFocus: false,
+            showButtons: false,
+            multiline: false,
+        },
+        value: '',
+        onCancel: () => {},
+    };
+
+    constructor(props) {
+        super(props);
 
         this.state = {
-            value: '',
+            value: props.value,
             disabled: false,
-            multiline: false,
+            multiline: props.options.multiline,
         };
 
         this.textarea = null;
@@ -22,8 +39,16 @@ export default class AddForm extends React.Component {
         this._keyListener = null;
     }
 
-    componentWillMount() {
+    // componentWillMount() {
+    //
+    // }
+
+    componentDidMount() {
         this._initKeypress();
+
+        if (this.props.options.autoFocus) {
+            this.focus();
+        }
     }
 
     componentWillUnmount() {
@@ -38,6 +63,14 @@ export default class AddForm extends React.Component {
 
     onInputRef = (ref) => {
         this.textarea = ref;
+    };
+
+    handleCancel = () => {
+        this.props.onCancel();
+    };
+
+    handleSave = () => {
+        this.submit();
     };
 
     clear = () => {
@@ -59,7 +92,7 @@ export default class AddForm extends React.Component {
     };
 
     _initKeypress() {
-        this._keyListener = new Keypress.Listener(this._textarea);
+        this._keyListener = new Keypress.Listener(this.textarea);
 
         this._keyListener.register_combo({
             keys: 'enter',
@@ -103,16 +136,33 @@ export default class AddForm extends React.Component {
             style.resize = 'none';
         }
 
+        let buttons = null;
+
+        if (this.props.options.showButtons) {
+            const cancelClassName = 'button button-clear';
+            const saveClassName = 'button';
+
+            buttons = (
+                <div>
+                    <button className={cancelClassName} onClick={this.handleCancel}>cancel</button>
+                    <button className={saveClassName} onClick={this.handleSave}>save</button>
+                </div>
+            );
+        }
+
         return (
-            <Textarea
-                inputRef={this.onInputRef}
-                className="todo-add-form"
-                placeholder="type todos here ..."
-                style={style}
-                value={this.state.value}
-                onChange={this.onChangeValue}
-                disabled={this.state.disabled}
-            />
+            <div>
+                <Textarea
+                    inputRef={this.onInputRef}
+                    className="todo-add-form"
+                    placeholder="type todos here ..."
+                    style={style}
+                    value={this.state.value}
+                    onChange={this.onChangeValue}
+                    disabled={this.state.disabled}
+                />
+                {buttons}
+            </div>
         );
     }
 }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
 
 import TodoForm from './TodoForm';
+import TodoListItem from './TodoListItem';
 import Db from './Db';
 
 const db = new Db();
@@ -14,9 +15,6 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            // eslint-disable-next-line
-            // increment: 0,
-
             todos: db.getTodos(),
 
             hasForm: true,
@@ -63,9 +61,7 @@ class App extends React.Component {
         this.setState({ showModal: false });
     };
 
-    handleTodoDone = (event) => {
-        const todoId = event.target.dataset.id;
-
+    handleTodoDone = (todoId) => {
         this.setState((prevState) => {
             const { todos } = prevState;
 
@@ -80,41 +76,46 @@ class App extends React.Component {
         });
     };
 
+    handleTodoSave = (todoId, text) => {
+        this.setState((prevState) => {
+            const { todos } = prevState;
+
+            // TODO check todo by id
+            todos[todoId].text = text;
+
+            db.updateTodo(todoId, todos[todoId]);
+
+            return {
+                todos,
+            };
+        });
+    };
+
     render() {
         const list = Object.keys(this.state.todos).reverse().map((todoId) => {
             const todo = this.state.todos[todoId];
 
-            let rowClassName = 'row todo';
-
-            if (todo.done) {
-                rowClassName += ' todo_done';
-            }
-
             return (
-                <div className={rowClassName} key={todo.id}>
-                    <div className="column column-10">
-                        <input
-                            data-id={todo.id}
-                            className="todo__done-checkbox"
-                            type="checkbox"
-                            checked={todo.done}
-                            onChange={this.handleTodoDone}
-                        />
-                    </div>
-                    <div className="column column-90">{todo.text}</div>
-                </div>
+                <TodoListItem
+                    key={todo.id}
+                    todo={todo}
+                    onDone={this.handleTodoDone}
+                    onSave={this.handleTodoSave}
+                />
             );
         });
 
         let todoForm = null;
 
         if (this.state.hasForm) {
-            todoForm = (<TodoForm
-                ref={(form) => {
-                    this.addForm = form;
-                }}
-                onSubmit={this.onSubmit}
-            />);
+            todoForm = (
+                <TodoForm
+                    ref={(form) => {
+                        this.addForm = form;
+                    }}
+                    onSubmit={this.onSubmit}
+                />
+            );
         }
 
         return (

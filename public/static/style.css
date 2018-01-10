@@ -6,7 +6,21 @@
 
 }
 
-.todo:hover {
+.todo_edit {
+    padding-top: 10px;
+}
+
+.todo_view {
+    /*max-height: 34px;*/
+}
+
+.todo_view .todo__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.todo_view:hover {
     background-color: #f4f5f6;
 }
 
@@ -17,4 +31,9 @@
 
 .todo__done-checkbox {
     margin-top: 5px;
+}
+
+.overlay-around {
+    outline: 200vw solid rgba(0,0,0, 0.5);
+    border-radius: 25px;
 }
